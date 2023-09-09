@@ -1,0 +1,6 @@
+# This is a segment of the main cmd_tlm_server.txt that will be used with
+# AUTO_INTERFACE_TARGETS or INTERFACE_TARGET
+
+#INTERFACE UBLOX_INT serial_interface.rb /dev/ttyUSB0 /dev/ttyUSB0 57600 NONE 1 10.0 nil FIXED 4 0 0xB562
+INTERFACE UBLOX_INT serial_interface.rb /dev/ttyUSB0 /dev/ttyUSB0 57600 NONE 1 10.0 nil LENGTH 32 16 8 1 LITTLE_ENDIAN 0 0xB562
+  TARGET UBLOX

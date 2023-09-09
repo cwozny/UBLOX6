@@ -1,0 +1,503 @@
+TELEMETRY UBLOX NAV-POS-ECEF LITTLE_ENDIAN "Position solution in ECEF"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0101 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM ecefX 32 INT "ECEF X coordinate"
+    UNITS Centimeters cm
+  APPEND_ITEM ecefY 32 INT "ECEF Y coordinate"
+    UNITS Centimeters cm
+  APPEND_ITEM ecefZ 32 INT "ECEF Z coordinate"
+    UNITS Centimeters cm
+  APPEND_ITEM pAcc 32 UINT "Position accuracy estimate"
+    UNITS Centimeters cm
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-POS-LLH LITTLE_ENDIAN "Geodetic position solution"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0102 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM lon 32 INT "Longitude"
+    GENERIC_READ_CONVERSION_START
+      value * 1e-7
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM lat 32 INT "Latitude"
+    GENERIC_READ_CONVERSION_START
+      value * 1e-7
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM height 32 INT "Height above ellipsoid"
+    UNITS Millimeters mm
+  APPEND_ITEM hMSL 32 INT "Height above mean sea level"
+    UNITS Millimeters mm
+  APPEND_ITEM hAcc 32 UINT "Horizontal accuracy estimate"
+    UNITS Millimeters mm
+  APPEND_ITEM vAcc 32 UINT "Vertical accuracy estimate"
+    UNITS Millimeters mm
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-STATUS LITTLE_ENDIAN "Receiver navigation status"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0103 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM gpsFix 8 UINT "GPS Fix"
+    STATE NONE 0
+    STATE DEAD_RECKONING_ONLY 1
+    STATE 2D 2
+    STATE 3D 3
+    STATE GPS_PLUS_DEAD_RECKONING 4
+    STATE TIME_ONLY 5
+  APPEND_ITEM spare 4 UINT "Spare"
+  APPEND_ITEM towset 1 UINT "Time of Week Valid"
+  APPEND_ITEM wknset 1 UINT "Week Number Valid"
+  APPEND_ITEM diffsoln 1 UINT "Differential GPS in use"
+  APPEND_ITEM gpsfixok 1 UINT "Position and velocity valid and within DOP and ACC Masks"
+  APPEND_ITEM mapMatching 2 UINT "Map matching status"
+    STATE NONE 0
+    STATE VALID 1
+    STATE USED 2
+    STATE DR 3
+  APPEND_ITEM spare 5 UINT "Spare"
+  APPEND_ITEM dgpsIstat 1 UINT "DGPS input status"
+    STATE NONE 0
+    STATE PR_PRR_CORRECTION 1
+  APPEND_ITEM spare 6 UINT "Spare"
+  APPEND_ITEM psmState 2 UINT "Power safe mode state"
+  APPEND_ITEM ttff 32 UINT "Time to first fix (millisecond time tag)"
+    UNITS Milliseconds ms
+  APPEND_ITEM msss 32 UINT "Milliseconds since startup/reset"
+    UNITS Milliseconds ms
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-DOP LITTLE_ENDIAN "Dilution of precision"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0104 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM gDOP 16 UINT "Geometric DOP"
+    GENERIC_READ_CONVERSION_START
+      value * 0.01
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM pDOP 16 UINT "Position DOP"
+    GENERIC_READ_CONVERSION_START
+      value * 0.01
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM tDOP 16 UINT "Time DOP"
+    GENERIC_READ_CONVERSION_START
+      value * 0.01
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM vDOP 16 UINT "Vertical DOP"
+    GENERIC_READ_CONVERSION_START
+      value * 0.01
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM hDOP 16 UINT "Horizontal DOP"
+    GENERIC_READ_CONVERSION_START
+      value * 0.01
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM nDOP 16 UINT "Northing DOP"
+    GENERIC_READ_CONVERSION_START
+      value * 0.01
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM eDOP 16 UINT "Easting DOP"
+    GENERIC_READ_CONVERSION_START
+      value * 0.01
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-SOL LITTLE_ENDIAN "Navigation solution information"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0106 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM fTOW 32 INT "Fractional nanoseconds remainder of rounded milliseconds above"
+  APPEND_ITEM week 16 INT "GPS week"
+  APPEND_ITEM gpsFix 8 INT "GPS Fix"
+    STATE NONE 0
+    STATE DEAD_RECKONING 1
+    STATE 2D 2
+    STATE 3D 3
+    STATE GPS_PLUS_DEAD_RECKONING 4
+    STATE TIME_ONLY 5
+  APPEND_ITEM spare 4 UINT "Spare"
+  APPEND_ITEM towset 1 UINT "Time of week validity"
+    STATE INVALID 0
+    STATE VALID 1
+  APPEND_ITEM wknset 1 UINT "Week number validity"
+    STATE INVALID 0
+    STATE VALID 1
+  APPEND_ITEM diffsoln 1 UINT "DGPS used"
+    STATE UNUSED 0
+    STATE USED 1
+  APPEND_ITEM gpsFixOk 1 UINT "Within DOP & ACC masks"
+    STATE FALSE 0
+    STATE TRUE 1
+  APPEND_ITEM ecefX 32 INT "ECEF X coordinate"
+    UNITS Centimeters cm
+  APPEND_ITEM ecefY 32 INT "ECEF Y coordinate"
+    UNITS Centimeters cm
+  APPEND_ITEM ecefZ 32 INT "ECEF Z coordinate"
+    UNITS Centimeters cm
+  APPEND_ITEM pAcc 32 UINT "Position accuracy estimate"
+    UNITS Centimeters cm
+  APPEND_ITEM ecefVX 32 INT "ECEF X velocity"
+  APPEND_ITEM ecefVY 32 INT "ECEF Y velocity"
+  APPEND_ITEM ecefVZ 32 INT "ECEF Z velocity"
+  APPEND_ITEM sAcc 32 UINT "Speed accuracy estimate"
+  APPEND_ITEM pDop 16 UINT "Position DOP"
+  APPEND_ITEM reserved 8 UINT "Reserved"
+  APPEND_ITEM numSv 8 UINT "Number of SVs used in Nav Solution"
+  APPEND_ITEM reserved 32 UINT "Reserved"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-VEL-ECEF LITTLE_ENDIAN "Velocity solution in ECEF"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0111 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM ecefVX 32 INT "ECEF X velocity"
+  APPEND_ITEM ecefVY 32 INT "ECEF Y velocity"
+  APPEND_ITEM ecefVZ 32 INT "ECEF Z velocity"
+  APPEND_ITEM sAcc 32 UINT "Speed accuracy estimate"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-VEL-NED LITTLE_ENDIAN "Velocity solution in NED"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0112 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM velN 32 INT "NED north velocity"
+    UNITS Centimeters/second cm/s
+  APPEND_ITEM velE 32 INT "NED east velocity"
+    UNITS Centimeters/second cm/s
+  APPEND_ITEM velD 32 INT "NED down velocity"
+    UNITS Centimeters/second cm/s
+  APPEND_ITEM speed 32 UINT "Speed (3-D)"
+    UNITS Centimeters/second cm/s
+  APPEND_ITEM gSpeed 32 UINT "Ground Speed (2-D)"
+    UNITS Centimeters/second cm/s
+  APPEND_ITEM heading 32 INT "Heading of motion (2-D)"
+    UNITS Degrees deg
+    GENERIC_READ_CONVERSION_START
+      value * 1e-5
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM sAcc 32 UINT "Speed accuracy estimate"
+    UNITS Centimeters/second cm/s
+  APPEND_ITEM cAcc 32 UINT "Course/Heading accuracy estimate"
+    UNITS Degrees deg
+    GENERIC_READ_CONVERSION_START
+      value * 1e-5
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-TIME-GPS LITTLE_ENDIAN "GPS time solution"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0120 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM fTOW 32 INT "Fractional nanoseconds remainder of rounded ms above"
+  APPEND_ITEM week 16 INT "GPS week"
+  APPEND_ITEM leapS 8 INT "Leap seconds"
+    UNITS Seconds s
+  APPEND_ITEM valid 8 UINT "Validity flags"
+  APPEND_ITEM tAcc 32 UINT "Time accuracy estimate"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-TIME-UTC LITTLE_ENDIAN "UTC time solution"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0121 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM tAcc 32 UINT "Time accuracy estimate"
+  APPEND_ITEM nano 32 INT "Nanoseconds of second"
+  APPEND_ITEM year 16 UINT "Year"
+  APPEND_ITEM month 8 UINT "Month"
+    FORMAT_STRING "%02.0f"
+  APPEND_ITEM day 8 UINT "Day"
+    FORMAT_STRING "%02.0f"
+  APPEND_ITEM hour 8 UINT "Hour"
+    FORMAT_STRING "%02.0f"
+  APPEND_ITEM min 8 UINT "Minute"
+    FORMAT_STRING "%02.0f"
+  APPEND_ITEM sec 8 UINT "Second"
+    FORMAT_STRING "%06.3f"
+    UNITS Seconds s
+  APPEND_ITEM dateTimeString 0 DERIVED "Date/Time String"
+    GENERIC_READ_CONVERSION_START STRING
+      (packet.read("year").to_s + "/" + packet.read("month", :FORMATTED) + "/" + packet.read("day", :FORMATTED) + " " +
+       packet.read("hour", :FORMATTED) + ":" + packet.read("min", :FORMATTED) + ":" + 
+       packet.read("secFloat", :FORMATTED))
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM secFloat 0 DERIVED "Second"
+    FORMAT_STRING "%06.3f"
+    GENERIC_READ_CONVERSION_START FLOAT 32
+      (packet.read("sec") + (packet.read("nano") * 1e-9))
+    GENERIC_READ_CONVERSION_END
+  APPEND_ITEM spare 5 UINT "Spare"
+  APPEND_ITEM utcValid 1 UINT "UTC Valid"
+  APPEND_ITEM wknValid 1 UINT "Week Number Valid"
+  APPEND_ITEM towValid 1 UINT "Time of Week Valid"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-CLOCK LITTLE_ENDIAN "Clock Solution"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0122 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM clkB 32 INT "Clock bias in nanoseconds"
+    UNITS Nanoseconds ns
+  APPEND_ITEM clkD 32 INT "Clock drift in nanoseconds per second"
+  APPEND_ITEM tAcc 32 UINT "Time accuracy estimate in nanoseconds"
+  APPEND_ITEM fAcc 32 UINT "Frequency accuracy estimate in picoseconds per second"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-SVINFO LITTLE_ENDIAN "Space vehicle information"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0130 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM numCh 8 UINT "Number of channels"
+  APPEND_ITEM chipGen 8 UINT "Flags"
+    STATE ANTARIS 0
+    STATE UBLOX5 1
+    STATE UBLOX6 2
+  APPEND_ITEM reserved 16 UINT "Reserved"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-DGPS LITTLE_ENDIAN "DGPS data used for nav"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0131 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM age 32 INT "Age of newest correction data"
+    UNITS Milliseconds ms
+  APPEND_ITEM baseId 16 INT "DGPS Base Station ID"
+  APPEND_ITEM baseHealth 16 INT "DGPS Base Station Health Status"
+  APPEND_ITEM numCh 8 UINT "Number of channels for which correction data is following"
+  APPEND_ITEM status 8 UINT "DGPS Correction Type Status"
+    STATE NONE 0
+    STATE PR_PRR_CORRECTION 1
+  APPEND_ARRAY_ITEM reserved 8 UINT 16 "Reserved"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-SBAS LITTLE_ENDIAN "SBAS Status Data"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0132 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM geo 8 UINT "PRN Number of the GEO where correction and integrity data is used from"
+  APPEND_ITEM mod 8 UINT "SBAS Mode"
+    STATE DISABLED 0
+    STATE ENABLED_INTEGRITY 1
+    STATE ENABLED_TESTMODE 3
+  APPEND_ITEM sys 8 INT "SBAS System"
+    STATE UNKNOWN -1
+    STATE WAAS 0
+    STATE EGNOS 1
+    STATE MSAS 2
+    STATE GPS 16
+  APPEND_ITEM service 8 UINT "SBAS Services available"
+  APPEND_ITEM cnt 8 UINT "Number of SV data following"
+  APPEND_ARRAY_ITEM reserved 8 UINT 24 "Reserved"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX NAV-AOPSTATUS LITTLE_ENDIAN "AssistNow Autonomous Status"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0160 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM config 8 UINT "AssistNow Autonomous config"
+    STATE DISABLED 0
+  APPEND_ITEM status 8 UINT "AssistNow Autonomous subsystem status"
+    STATE IDLE 0
+  APPEND_ITEM reserved0 8 UINT "Reserved"
+  APPEND_ITEM reserved1 8 UINT "Reserved"
+  APPEND_ITEM avail 32 UINT "Data availability mask for GPS SVs"
+  APPEND_ITEM reserved2 32 UINT "Reserved"
+  APPEND_ITEM reserved3 32 UINT "Reserved"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX MON-IO LITTLE_ENDIAN "I/O subsystem status"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0A02 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX MON-MSGPP LITTLE_ENDIAN "Message Parse and Process Status"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0A06 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ARRAY_ITEM msg1 16 UINT 128 "Number of successfully parsed messages for each protocol on target0"
+  APPEND_ARRAY_ITEM msg2 16 UINT 128 "Number of successfully parsed messages for each protocol on target1"
+  APPEND_ARRAY_ITEM msg3 16 UINT 128 "Number of successfully parsed messages for each protocol on target2"
+  APPEND_ARRAY_ITEM msg4 16 UINT 128 "Number of successfully parsed messages for each protocol on target3"
+  APPEND_ARRAY_ITEM msg5 16 UINT 128 "Number of successfully parsed messages for each protocol on target4"
+  APPEND_ARRAY_ITEM msg6 16 UINT 128 "Number of successfully parsed messages for each protocol on target5"
+  APPEND_ARRAY_ITEM skipped 32 UINT 192 "Number of skipped bytes for each target"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX MON-RXBUF LITTLE_ENDIAN "Receiver Buffer Status"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0A07 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ARRAY_ITEM pending 16 UINT 96 "Number of bytes pending in receiver buffer for each target"
+    UNITS Bytes b
+  APPEND_ARRAY_ITEM usage 8 UINT 48 "Maximum usage receiver buffer during the last sysmon period for each target"
+  APPEND_ARRAY_ITEM peakUsage 8 UINT 48 "Maximum usage receiver buffer for each target"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX MON-TXBUF LITTLE_ENDIAN "Transmitter buffer status"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0A08 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ARRAY_ITEM pending 16 UINT 96 "Number of bytes pending in transmitter buffer for each target"
+  APPEND_ARRAY_ITEM usage 8 UINT 48 "Maximum usage transmitter buffer during the last sysmon period for each target"
+  APPEND_ARRAY_ITEM peakUsage 8 UINT 48 "Maximum usage transmitter buffer for each target"
+  APPEND_ITEM tUsage 8 UINT "Maximum usage of transmitter buffer during the last sysmon period for all targets"
+  APPEND_ITEM tPeakUsage 8 UINT "Maximum usage of transmitter buffer for all targets"
+  APPEND_ITEM errors 8 UINT "Error bitmask"
+  APPEND_ITEM reserved1 8 UINT "Reserved"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX MON-HW LITTLE_ENDIAN "Hardware status"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0A09 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM pinSel 32 UINT "Mask of Pins Set as Peripheral/PIO"
+  APPEND_ITEM pinBank 32 UINT "Mask of Pins Set as Bank A/B"
+  APPEND_ITEM pinDir 32 UINT "Mask of Pins Set as Input/Output"
+  APPEND_ITEM pinVal 32 UINT "Mask of Pins Value Low/High"
+  APPEND_ITEM noisePerMs 16 UINT "Noise level as measured by the GPS core"
+  APPEND_ITEM agcCnt 16 UINT "AGC monitor"
+  APPEND_ITEM aStatus 8 UINT "Status of the antenna superersion state machine"
+    STATE INIT 0
+    STATE DONTKNOW 1
+    STATE OK 2
+    STATE SHORT 3
+    STATE OPEN 4
+  APPEND_ITEM aPower 8 UINT "Current power status of antenna"
+    STATE OFF 0
+    STATE ON 1
+    STATE DONTKNOW 2
+  APPEND_ITEM flags 8 UINT "Flags"
+  APPEND_ITEM reserved1 8 UINT "Flags"
+  APPEND_ITEM usedMask 32 UINT "Mask of pins that are used by the virtual pin manager"
+  APPEND_ARRAY_ITEM vp 8 UINT 200 "Array of pin mappings for each of the 25 physical pins"
+  APPEND_ITEM jamInd 8 UINT "CW jamming indicator"
+  APPEND_ITEM reserved2 16 UINT "Reserved"
+  APPEND_ITEM pinIrq 32 UINT "Mask of Pins Value using the PIO Irq"
+  APPEND_ITEM pullH 32 UINT "Mask of Pins Value using the PIO Pull High Resistor"
+  APPEND_ITEM pullL 32 UINT "Mask of Pins Value using the PIO Pull Low Resistor"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX MON-HW2 LITTLE_ENDIAN "Extended hardware status"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0A0B "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM ofsI 8 INT "Imbalance of I-part of complex signal, scaled"
+  APPEND_ITEM magI 8 UINT "Magnitude of I-part of complex signal, scaled"
+  APPEND_ITEM ofsQ 8 INT "Imbalance of Q-part of complex signal, scaled"
+  APPEND_ITEM magQ 8 UINT "Magnitude of Q-part of complex signal, scaled"
+  APPEND_ITEM cfgSource 8 UINT "Source of low-level configuration"
+    STATE FLASH_IMAGE 102
+    STATE OTP 111
+    STATE CONFIG_PINS 112
+    STATE ROM 114
+  APPEND_ARRAY_ITEM reserved0 8 UINT 24 "Reserved"
+  APPEND_ITEM lowLevCfg 32 UINT "Low-level configuration"
+  APPEND_ARRAY_ITEM reserved1 32 UINT 64 "Reserved"
+  APPEND_ITEM postStatus 32 UINT "POST status word"
+  APPEND_ITEM reserved2 32 UINT "Reserved"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX AID-INI LITTLE_ENDIAN "Poll GPS initial aiding data"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0B01 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM ecefXOrLat 32 INT "WGS84 ECEF X coordinate or latitude, depending on flags below"
+  APPEND_ITEM ecefYOrLon 32 INT "WGS84 ECEF Y coordinate or longitude, depending on flags below"
+  APPEND_ITEM ecefZOrAlt 32 INT "WGS84 ECEF Z coordinate or altitude, depending on flags below"
+  APPEND_ITEM posAcc 32 UINT "Position accuracy (stddev)"
+  APPEND_ITEM tmCfg 16 UINT "Time mark configuration"
+    STATE fEdge 1
+    STATE tm1 4
+    STATE f1 6
+  APPEND_ITEM wn 16 UINT "Actual week number"
+  APPEND_ITEM tow 32 UINT "Actual time of week"
+  APPEND_ITEM towNs 32 INT "Fractional part of time of week"
+  APPEND_ITEM tAccMs 32 UINT "Milliseconds part of time accuracy"
+  APPEND_ITEM tAccNs 32 UINT "Nanoseconds part of time accuracy"
+  APPEND_ITEM clkDOrFreq 32 INT "Clock drift or frequency, depending on flags below"
+  APPEND_ITEM clkDAccOrFreqAcc 32 UINT "Accuracy of clock drift or frequency, depending on flags below"
+  APPEND_ITEM flags 32 UINT "Bitmask with the following flags"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX AID-DATA LITTLE_ENDIAN "Polls all GPS initial aiding data"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0B10 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX AID-ALPSRV LITTLE_ENDIAN "ALP client requests AlmanacPlus data from server"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0B32 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM idSize 8 UINT "Identifier size. This data, beginning at message start, must prepend the returneded data."
+  APPEND_ITEM type 8 UINT "Requested data type."
+  APPEND_ITEM ofs 16 UINT ""
+  APPEND_ITEM size 16 UINT ""
+  APPEND_ITEM fileId 16 UINT ""
+  APPEND_ITEM dataSize 16 UINT ""
+  APPEND_ITEM id1 8 UINT "Identifier data"
+  APPEND_ITEM id2 8 UINT "Identifier data"
+  APPEND_ITEM id3 32 UINT "Identifier data"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
+
+TELEMETRY UBLOX RXM-SVSI LITTLE_ENDIAN "Space vehicle status information"
+  APPEND_ITEM SYNCWORD 16 STRING "Sync Word"
+  APPEND_ID_ITEM ID 16 UINT 0x0220 "Class/ID" BIG_ENDIAN
+  APPEND_ITEM LENGTH 16 UINT "Length"
+  APPEND_ITEM iTOW 32 UINT "GPS Millisecond Time of Week"
+    UNITS Milliseconds ms
+  APPEND_ITEM week 16 INT "Measurement GPSP week number"
+  APPEND_ITEM numVis 8 UINT "Number of visible satellites"
+  APPEND_ITEM numSV 8 UINT "Number of per-SV data blocks following"
+  APPEND_ITEM CK_A 8 UINT "Checksum A"
+  APPEND_ITEM CK_B 8 UINT "Checksum B"
